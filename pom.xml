@@ -1,0 +1,66 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>pt.smst</groupId>
+		<artifactId>SMSDispatch</artifactId>
+		<version>0.66</version>
+	</parent>
+
+	<artifactId>sms2port</artifactId>
+
+	<name>SMS2Port</name>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<antlr.version>3.5.2</antlr.version>
+	</properties>
+
+	<dependencies>
+		<dependency>
+			<!-- **/Test*.java, **/*Test.java, and **/*TestCase.java -->
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.12</version>
+			<scope>test</scope>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.rxtx</groupId>
+			<artifactId>rxtx</artifactId>
+			<version>2.1.7</version>
+		</dependency>
+		<dependency>
+			<groupId>org.antlr</groupId>
+			<artifactId>antlr-runtime</artifactId>
+			<version>${antlr.version}</version>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<testSourceDirectory>src/test/surefire/java</testSourceDirectory>
+
+		<plugins>
+			<plugin>
+				<groupId>org.antlr</groupId>
+				<artifactId>antlr3-maven-plugin</artifactId>
+				<version>${antlr.version}</version>
+
+				<configuration>
+					<listener>false</listener>
+					<sourceDirectory>${basedir}/src/main/java/sms2port</sourceDirectory>
+					<outputDirectory>${basedir}/src/main/java/sms2port</outputDirectory>
+				</configuration>
+
+				<executions>
+					<execution>
+						<goals>
+							<goal>antlr</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+</project>
